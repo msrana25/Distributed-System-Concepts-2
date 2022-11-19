@@ -1,0 +1,162 @@
+#Server:-
+#=======
+docker run --name file_server --mount type=bind,source=E:/DSD_assignment3,target=/COMP6231_A3 -it python /bin/bash
+apt-get update
+apt-get install nano net-tools iputils-ping
+#Ctrl-P + Ctrl -Q to keep container running in background
+docker commit file_server file_server_img
+docker attach file_server
+cd COMP6231_A3/server
+ifconfig
+nano server.py #(Change the server host address and save)
+python server.py
+
+
+
+#Client0:-
+#=======
+docker run --name client0 --mount type=bind,source=E:/DSD_assignment3,target=/COMP6231_A3 -it file_server_img /bin/bash
+cd /COMP6231_A3/client
+ifconfig
+nano client.py #(Change the server host address and save)
+python client.py
+
+mkdir client0_files
+cd client0_files
+ul about.txt
+mkdir animals
+cd animals
+mkdir birds
+mkdir fish
+cd birds
+ul mandarin_duck.jpg
+cd ..
+cd fish
+ul jellyfish.jpg
+ul orca.jpg
+cd ..
+cd ..
+mkdir Products
+cd Products
+mkdir electronics
+mkdir home
+cd electronics
+ul taco_bell.mp3
+mkdir cell_phones
+mkdir headphones
+mkdir smart_home
+cd cell_phones
+ul user-guide-nokia-1-4-user-guide.pdf
+cd ..
+cd smart_home
+mkdir Sample_Web_Page_files
+cd Sample_Web_Page_files
+ul picture-of-something.jpg
+exit
+
+sudo apt install tree
+cd ../server/client0_files
+tree -a
+
+
+
+#Client_1:-
+#========
+docker run --name client1 --mount type=bind,source=E:/DSD_assignment3,target=/COMP6231_A3 -it file_server_img /bin/bash
+cd /COMP6231_A3/client
+ifconfig
+python client.py
+
+../../../../..
+mkdir client1_files
+cd client1_files
+ul about.txt
+mkdir animals
+cd animals
+mkdir birds
+mkdir fish
+cd birds
+ul mandarin_duck.jpg
+cd ..
+cd fish
+ul jellyfish.jpg
+ul orca.jpg
+cd ..
+cd ..
+mkdir Products
+cd Products
+mkdir electronics
+mkdir home
+cd electronics
+ul taco_bell.mp3
+mkdir cell_phones
+mkdir headphones
+mkdir smart_home
+cd cell_phones
+ul user-guide-nokia-1-4-user-guide.pdf
+cd ..
+cd smart_home
+mkdir Sample_Web_Page_files
+cd Sample_Web_Page_files
+ul picture-of-something.jpg
+exit
+
+sudo apt install tree
+cd ../server/client1_files
+tree -a
+
+
+
+#Client_2:-
+#=========
+docker run --name client2 --mount type=bind,source=E:/DSD_assignment3,target=/COMP6231_A3 -it file_server_img /bin/bash 
+cd /COMP6231_A3/client
+ifconfig
+python client.py
+
+../../../../..
+mkdir client2_files
+cd client2_files
+ul about.txt
+mkdir animals
+cd animals
+mkdir birds
+mkdir fish
+cd birds
+ul mandarin_duck.jpg
+cd ..
+cd fish
+ul jellyfish.jpg
+ul orca.jpg
+cd ..
+cd ..
+mkdir Products
+cd Products
+mkdir electronics
+mkdir home
+cd electronics
+ul taco_bell.mp3
+mkdir cell_phones
+mkdir headphones
+mkdir smart_home
+cd cell_phones
+ul user-guide-nokia-1-4-user-guide.pdf
+cd ..
+cd smart_home
+mkdir Sample_Web_Page_files
+cd Sample_Web_Page_files
+ul picture-of-something.jpg
+exit
+
+sudo apt install tree
+cd ../server/client2_files
+tree -a
+
+
+
+
+
+
+
+
+

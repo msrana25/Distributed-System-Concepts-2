@@ -1,0 +1,52 @@
+#Master:-
+#=======
+docker run --name mpi4py_master --mount type=bind,source=E:/Assignment3_MPI,target=/DS_COMP6231 -it husseinabdallah2/mpi4py-cluster:master
+ipconfig
+#After creating and running ssh on client containers
+ssh 172.17.0.3
+exit
+ssh 172.17.0.4
+exit
+ssh 172.17.0.5
+exit
+nano ~/machinefile #(add and save ip addresses of master and workers to it.)
+ssh-keygen -t rsa
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.17.0.3
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.17.0.4
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.17.0.5
+ssh 172.17.0.3
+exit
+ssh 172.17.0.4
+exit
+ssh 172.17.0.5
+exit
+cd DS_COMP6231/Q1
+mpiexec -n 4 -machinefile ~/machinefile python -m mpi4py T3.py
+cd ../Q2
+mpiexec -n 4 -machinefile ~/machinefile python -m mpi4py T3.py
+cd ../Q3
+mpiexec -n 4 -machinefile ~/machinefile python -m mpi4py T3.py
+cd ../Q4
+mpiexec -n 4 -machinefile ~/machinefile python -m mpi4py T3.py
+
+
+
+#Worker1
+#=======
+docker run --name mpi4py_worker1 --mount type=bind,source=E:/Assignment3_MPI,target=/DS_COMP6231 -it husseinabdallah2/mpi4py-cluster:master
+service ssh start
+ifconfig
+
+
+#Worker2
+#=======
+docker run --name mpi4py_worker2 --mount type=bind,source=E:/Assignment3_MPI,target=/DS_COMP6231 -it husseinabdallah2/mpi4py-cluster:master
+service ssh start
+ifconfig
+
+#Worker3
+#=======
+docker run --name mpi4py_worker3 --mount type=bind,source=E:/Assignment3_MPI,target=/DS_COMP6231 -it husseinabdallah2/mpi4py-cluster:master
+service ssh start
+ifconfig
+
